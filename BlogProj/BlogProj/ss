@@ -1,0 +1,44 @@
+Multer is a Node.js middleware for handling multipart/form-data that makes the otherwise painstaking process of uploading files in Node.js much easier. In this article, we’ll learn the purpose of Multer in handling files in submitted forms. We’ll also explore Multer by building a mini app with a frontend and backend to test uploading a file. Let’s get started!
+
+Table of contents
+
+Managing user inputs in forms
+
+Encoding and uploading forms with Multer
+
+Multer: an overview
+
+Building an app with Multer support
+
+Creating our frontend
+
+Install and configure Multer
+
+Conclusion
+
+Managing user inputs in forms
+
+Web applications receive all different types of input from users, including text, graphical controls like checkboxes or radio buttons, and files, like images, videos, and other media.
+
+In forms, each of these inputs are submitted to a server that processes the inputs, uses them in some way, perhaps saving them somewhere else, then gives the frontend a success or failed response.
+
+When submitting forms that contain text inputs, the server, Node.js in our case, has less work to do. Using Express, you can easily grab all the inputs entered in the req.body object. However, submitting forms with files is a bit more complex because they require more processing, which is where Multer comes in.
+
+@login_required(login_url='/admin/login/')
+def post(request, pk):
+if request.method == 'POST':
+form = CommentForm(request.POST)
+if form.is_valid():
+form.save()
+else:
+messages.info(request, 'Username OR password is incorrect')
+
+    SinglePost = Post.objects.get(pk=pk)
+    Relatedposts = Post.objects.filter(BlogCategory__name="Featured").exclude(pk=pk)
+
+    context = {
+        "post": SinglePost,
+        "Rpost": Relatedposts,
+        'form': form
+    }
+    return render(request, 'post.html', context)
